@@ -25,7 +25,7 @@ class HtmlOutputer(object):
         fout = open('result.htm', 'W')
         fout.write("<html>")
         fout.write("<head>")
-        fout.write("<meta charset="utf-8"></meta>")
+        # fout.write("<meta charset="utf-8"></meta>")
         fout.write("<title>Crawl Result</title>")
         fout.write("</head>")
         fout.write("<body>")
