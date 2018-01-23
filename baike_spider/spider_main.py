@@ -2,7 +2,7 @@
 
 """
 @version: 1.0
-@author: James
+@author: Ethan16
 @license: Apache Licence
 @contact: euler52201044@163.com
 @file: spider_main.py
