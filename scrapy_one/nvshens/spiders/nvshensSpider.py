@@ -8,16 +8,21 @@ from nvshens.items import NvshensItem
 
 from scrapy.crawler import CrawlerProcess
 
-from scrapy import optional_features
+
+# from scrapy import optional_features
 
 # scrapy URLerror:<urlopen error [Error 10051]>
-optional_features.remove('boto')
+# optional_features.remove('boto')
 
 
 class nvshensSpider(scrapy.Spider):
     name = 'nvshens'
     allowed_domains = []
-    start_urls = ["https://www.nvshens.com/g/24390/1.html", ]
+    start_urls = ["https://www.nvshens.com/g/28064/", ]
+    # num_urls = ((url.split('/'))[len(url.split('/')) - 1] for url in start_urls)
+    num_urls=start_urls[0].split('/')[len(start_urls[0].split('/')) - 2]
+    # print("====debug====")
+    # print(start_urls[0].split('/')[len(start_urls[0].split('/')) - 2])
 
     # nvshens_name=response.xpath('//li/a[@target="_blank"]')[0]
 
@@ -25,15 +30,13 @@ class nvshensSpider(scrapy.Spider):
         item = NvshensItem()
         # https://t1.onvshen.com:85/gallery/25126/24390/s/004.jpg
         item['image_urls'] = response.xpath('//img//@src').extract()  # get picture
-        print 'image_urls', item['image_urls']
+        # print 'image_urls', item['image_urls']
         # item['nvshens_names']=response.xpath('//li/a[@target="_blank"]')[0].text
         # print 'nvshens_name',item['nvshens_names']
         yield item
 
-        # //*[@id="pages"]/a[11]
-        # //*[@id="pages"]/a[10]
-        for i in range(2, 11):
-            new_url = "https://www.nvshens.com/g/24390/%d.html" % i
-            print 'new url : ', new_url
+        for i in range(2, 15):
+            new_url = "https://www.nvshens.com/g/28064/%d.html" % i
+            # print 'new url : ', new_url
             if new_url:
                 yield scrapy.Request(new_url, callback=self.parse)

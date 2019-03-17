@@ -2,6 +2,7 @@
 
 import os
 import time
+from nvshens.spiders.nvshensSpider import nvshensSpider
 
 # Scrapy settings for nvshens project
 #
@@ -19,7 +20,9 @@ NEWSPIDER_MODULE = 'nvshens.spiders'
 
 ITEM_PIPELINES = {'nvshens.pipelines.NvshensPipeline': 1, }
 
-IMAGES_STORE = os.getcwd() + os.sep + "result" + os.sep + "nvshens" + os.sep + time.strftime('%Y%m%d%H%M%S')
+# IMAGES_STORE = os.getcwd() + os.sep + "result" + os.sep + "nvshens" + os.sep + time.strftime('%Y%m%d%H%M%S')
+# IMAGES_STORE = os.getcwd() + os.sep + "result" + os.sep + time.strftime('%Y%m%d%H%M%S')
+IMAGES_STORE = os.getcwd() + os.sep + "result" + os.sep + nvshensSpider.num_urls
 if not os.path.exists(IMAGES_STORE):
     os.makedirs(IMAGES_STORE)
 
